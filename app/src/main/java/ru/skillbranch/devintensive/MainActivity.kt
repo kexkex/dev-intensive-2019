@@ -2,15 +2,13 @@ package ru.skillbranch.devintensive
 
 
 import android.graphics.Color
-import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.skillbranch.devintensive.models.Bender
 
@@ -18,7 +16,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (v?.id == R.id.iv_send) {
-            val (phrase, color) = benderObj.listenAnswer(et_massege.text.toString().toLowerCase())
+            val (phrase, color) = benderObj.listenAnswer(et_message.text.toString().toLowerCase())
             messageEt.setText("")
             val (r,g,b) = color
             benderImage.setColorFilter(Color.rgb(r,g,b),PorterDuff.Mode.MULTIPLY)
@@ -41,7 +39,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         benderImage = iv_bender
         textTxt = tv_text
-        messageEt = et_massege
+        messageEt = et_message
         sendBtn = iv_send
 
         var status = savedInstanceState?.getString("Status") ?: Bender.Status.NORMAL.name
